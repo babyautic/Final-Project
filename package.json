@@ -12,6 +12,7 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
+        "mongodb": "^6.16.0",
         "mongoose": "^8.15.0"
     }
 }
