@@ -1,0 +1,153 @@
+h1 {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+  user-select: none;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+#Logo {
+  width: 400px;
+  height: 400px;
+  margin: 20px auto;
+}
+#mainContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+
+}
+#titleFeaturedEvent {
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+#titleFeaturedEvent h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+
+#mainEventCard {
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+ 
+}
+
+#eventDetails {
+  color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+#eventDetails h2 {
+  color: #ffffff;
+    text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.icon {
+  font-size: 48px;
+  /* oppure usa width/height per maggiore controllo */
+  width: 80px;
+  height: 80px;
+  gap: 1rem;
+}
+
+#iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.featured-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Flex container per mettere card e dettagli in linea */
+.event-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+  /* spazio tra card e dettagli */
+  margin-top: 24px;
+}
+
+/* Responsive: su schermi piccoli, metti in colonna */
+@media (max-width: 900px) {
+  .event-flex-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 768px) {
+  #mainEventCard {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 16px;
+    gap: 16px;
+  }
+
+  #mainContainer {
+    padding: 12px 2px;
+  }
+
+  #eventDetails {
+    max-width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Responsive: titolo più piccolo su mobile */
+@media (max-width: 600px) {
+  #titleFeaturedEvent h2 {
+    font-size: 1.3rem;
+  }
+}

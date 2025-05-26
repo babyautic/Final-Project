@@ -8,13 +8,23 @@ import FiltersComponent from './components/FiltersComponent'
 import FavoriteButtonComponent from './components/FavoriteButtonComponent'
 
 //import Pages
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './router-dom-page/HomePage'
 
 
 function App() {
 
   return (
     <>
-      <h1>Hello, world!!!</h1>
+      <NavBarComponent />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* altre rotte */}
+      </Routes>
+
+
+
     </>
   )
 }

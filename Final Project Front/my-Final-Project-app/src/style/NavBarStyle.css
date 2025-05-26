@@ -1,0 +1,59 @@
+.navbar {
+    background-color: #1d1d1d !important;
+    padding: 0px 20px;
+
+}
+
+#navbarContainer {
+
+    padding: 0px;
+}
+
+.logo-container #Logo {
+    width: 60px !important;
+    height: auto !important;
+}
+
+#userImg {
+    width: 40px !important;
+    height: auto !important;
+    border-radius: 50%;
+}
+
+/*#basic-navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.navbar a {
+    color: rgb(255, 255, 255) !important;
+    text-shadow:
+        2px 2px 0 #b01919,
+        4px 4px 8px #ff00cc,
+        0 0 24px #3c00ff;
+}
+
+
+.loginUser {
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+}
+
+.linkContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Solo su schermi grandi, flex */
+@media (min-width: 992px) {
+    #basic-navbar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
