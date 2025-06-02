@@ -1,0 +1,27 @@
+/* filepath: src/style/FavoriteEventPageStyle.css */
+.favorite-events-container {
+  padding: 32px;
+  background: #181818;
+  min-height: 100vh;
+}
+
+.favorite-title {
+  color: #fff200;
+  text-align: center;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.favorite-empty {
+  color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.favorite-cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}

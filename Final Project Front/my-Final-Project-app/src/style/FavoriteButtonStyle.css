@@ -1,0 +1,21 @@
+.favoriteButton {
+  background: linear-gradient(90deg, #ff00e6, #3c00ff);
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+width: auto;
+}
+
+.favoriteButton:hover {
+  background: linear-gradient(90deg, #fff200, #ff00cc);
+  color: #181818;
+}
+
+.favoriteButtonText {
+  color: #fff200; /* oppure il colore che preferisci */
+}

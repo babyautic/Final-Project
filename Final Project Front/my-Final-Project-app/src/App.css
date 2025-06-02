@@ -4,3 +4,10 @@ body {
 color: rgb(255, 255, 255);
 }
 
+#mainContent.blurred {
+  filter: blur(5px);
+  transition: filter 0.3s;
+  pointer-events: none; /* blocca click sul contenuto */
+  user-select: none;    /* blocca selezione testo */
+}
+
