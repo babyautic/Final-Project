@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EventListComponent from '../components/EventListComponent'
+import '../style/EventPageStyle.css'
 
 export default function EventPage() {
-  return (
-   <>
-   <h1>Event Pages</h1>
-   
+  const [search, setSearch] = useState("")
 
-   <div className='eventListContainer'>
-   <EventListComponent />
-   </div>
-   </>
+  return (
+    <>
+      <h1>Event Pages</h1>
+
+      <div className="event-search-container">
+        <input
+          type="text"
+          placeholder="Cerca eventi..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          className="event-search-input"
+        />
+      </div>
+
+      <div className='eventListContainer'>
+        <EventListComponent search={search} />
+      </div>
+    </>
   )
 }

@@ -15,6 +15,7 @@ import EventDetailPage from './router-dom-page/EventDetailPage'
 import EventPage from './router-dom-page/EventPage'
 import FavoriteEventPage from './router-dom-page/FavoriteEventPage'
 import LoginUserPage from './router-dom-page/LoginUserPage'
+import ContactsPage from './router-dom-page/ContactsPage'
 
 
 function App() {
@@ -37,10 +38,12 @@ function App() {
       <div id="mainContent" className={menuOpen ? "blurred" : ""}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/event/:id" element={<EventDetailPage />} />
           <Route path="/favorite" element={<FavoriteEventPage />} />
           <Route path="/eventpage" element={<EventPage />} />
           <Route path="/login" element={<LoginUserPage />} />
+          
         </Routes>
       </div>
       
