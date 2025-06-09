@@ -19,16 +19,34 @@ h1 {
   margin: 20px auto;
 }
 #mainContent {
-  padding-top: 100px; /* o quanto basta per vedere il titolo sotto la navbar */
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* o center se vuoi tutto centrato verticalmente */
+  padding-top: 100px; /* o l'altezza della tua navbar fissa */
+  background: transparent; /* o il colore di sfondo che preferisci */
+  overflow-x: hidden;
 }
 #mainContainer {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.featured-col,
+#eventDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #titleFeaturedEvent {
@@ -145,36 +163,99 @@ span {
 
 /* Responsive: su schermi piccoli, metti in colonna */
 @media (max-width: 900px) {
-  .event-flex-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-}
-
-/* Responsive: stack vertically on small screens */
-@media (max-width: 768px) {
-  #mainEventCard {
+  .event-flex-row,
+  #mainEventCard,
+  .eventListFlex {
     flex-direction: column;
     align-items: stretch;
-    margin-top: 16px;
     gap: 16px;
   }
-
-  #mainContainer {
-    padding: 12px 2px;
+  #iconContainer {
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+    align-items: center;
   }
-
-  #eventDetails {
-    max-width: 100%;
-    padding: 10px;
+  .featured-col, #eventDetailsContainer {
+    width: 100%;
+    min-width: 0;
+  }
+  #mainContainer {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
-/* Responsive: titolo più piccolo su mobile */
 @media (max-width: 600px) {
+  #mainContent {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  #mainContainer {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+/* Riduci dimensioni e padding sotto i 600px */
+@media (max-width: 600px) {
+  #mainContent {
+    padding-top: 70px;
+     /* navbar più compatta su mobile */
+  }
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    margin-top: 40px;
+  }
   #titleFeaturedEvent h2 {
     font-size: 1.3rem;
+  }
+  .event-search-input {
+    width: 95%;
+    font-size: 1rem;
+  }
+  #iconContainer {
+    gap: 12px;
+  }
+  #Logo {
+    width: 140px;
+    height: 140px;
+  }
+  .featured-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+}
+
+/* Ancora più piccolo sotto i 400px */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+  .event-search-input {
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+  #Logo {
+    width: 90px;
+    height: 90px;
+  }
+  .featured-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
 }
 

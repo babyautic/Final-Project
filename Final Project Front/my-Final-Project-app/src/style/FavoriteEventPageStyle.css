@@ -1,7 +1,7 @@
 /* filepath: src/style/FavoriteEventPageStyle.css */
 .favorite-events-container {
   padding: 32px;
-  background: #181818;
+
   min-height: 100vh;
 }
 
@@ -25,3 +25,35 @@
   gap: 24px;
   justify-content: center;
 }
+
+.remove-favorite-btn {
+  margin: 12px auto 24px auto;
+  display: block;
+  background: #b01919;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.remove-favorite-btn:hover {
+  background: #ff9800;
+  color: #222;
+}
+
+.remove-favorite-icon {
+  background: none;
+  border: none;
+  color: #b01919;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin: 8px auto 16px auto;
+  display: block;
+  transition: color 0.2s;
+}
+.remove-favorite-icon:hover {
+  color: #ff9800;
+}
+

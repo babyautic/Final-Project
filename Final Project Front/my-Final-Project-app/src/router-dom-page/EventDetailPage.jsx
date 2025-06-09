@@ -1,19 +1,31 @@
 // EventDetailPage.jsx
 import { useParams } from 'react-router-dom'
-import React from 'react'
-
-const mockEvents = [
-  { id: 1, nome: "Music Festival", descrizione: "Grande evento musicale!", img: "https://via.placeholder.com/300" },
-  { id: 2, nome: "Street Race", descrizione: "Gara di auto in città!", img: "https://via.placeholder.com/300" },
-  { id: 3, nome: "Auto Expo", descrizione: "Esposizione di auto tuning!", img: "https://via.placeholder.com/300" },
-  { id: 4, nome: "Night Drift", descrizione: "Drift notturno in pista!", img: "https://via.placeholder.com/300" }
-]
+import React, { useEffect, useState } from 'react'
 
 export default function EventDetailPage() {
   const { id } = useParams()
-  // Attenzione: useParams restituisce id come stringa!
-  const event = mockEvents.find(e => String(e.id) === String(id))
+  const [event, setEvent] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/eventi/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Evento non trovato')
+        return res.json()
+      })
+      .then(data => {
+        setEvent(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading) return <div>Caricamento...</div>
+  if (error) return <div>{error}</div>
   if (!event) return <div>Evento non trovato</div>
 
   return (

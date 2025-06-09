@@ -1,12 +1,12 @@
+import React, { useEffect, useState } from 'react'
 import '../style/HomePageStyle.css'
 import mapIcon from '../assets/mapicon.jpg'
 import { Link } from 'react-router-dom'
 
 import FeaturedCardComponent from '../components/FeaturedCardComponent'
-import mockEvents from '../mocks/mockEvents'
 import EventCardComponent from '../components/EventCardComponent'
 
-// Dati manuali per l'evento in evidenza
+// Dati manuali per l'evento in evidenza (puoi anche prenderlo dal backend se vuoi)
 const featuredEvent = {
     id: 1,
     nome: "Music Festival",
@@ -17,17 +17,24 @@ const featuredEvent = {
 }
 
 const homeEventIds = [2, 4, 5, 6]; // scegli gli ID che vuoi mostrare
-const homeEvents = mockEvents.filter(e => homeEventIds.includes(e.id));
 
 export default function HomePage() {
-    return (
+    const [homeEvents, setHomeEvents] = useState([])
 
+    useEffect(() => {
+        fetch('http://localhost:3000/api/eventi') // Cambia l'endpoint se necessario
+            .then(res => res.json())
+            .then(data => {
+                // Filtra solo gli eventi desiderati
+                setHomeEvents(data.filter(e => homeEventIds.includes(e.id)))
+            })
+            .catch(err => console.error('Errore nel caricamento eventi:', err))
+    }, [])
+
+    return (
         <>
             <div id='mainContainer'>
                 <h1>STREET AND RACE</h1>
-
-
-                
 
                 <div id='mainEventCard' className="event-flex-row">
                     <div className="featured-col">
@@ -47,16 +54,14 @@ export default function HomePage() {
                     </div>
                 </div>
 
-
                 <div className="our-events-section">
                     <h2>I nostri eventi</h2>
                     <div className="eventListFlex">
                         {homeEvents.map(event => (
-                            <EventCardComponent key={event.id} event={event} />
+                            <EventCardComponent key={event._id || event.id} event={event} />
                         ))}
                     </div>
                 </div>
-
 
                 <div id='iconContainer'>
                     <div className='containerIconText'>
@@ -69,17 +74,12 @@ export default function HomePage() {
                         <ion-icon name="calendar-outline" class="icon"></ion-icon>
                         <h6><span>2.</span> Event</h6>
                     </div>
-
                     <div className='containerIconText'>
                         <ion-icon name="share-social-sharp" class="icon"></ion-icon>
                         <h6><span>3.</span> Share</h6>
                     </div>
                 </div>
-
-               
             </div>
-
-
         </>
     )
 }

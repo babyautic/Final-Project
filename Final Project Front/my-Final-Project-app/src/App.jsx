@@ -16,6 +16,7 @@ import EventPage from './router-dom-page/EventPage'
 import FavoriteEventPage from './router-dom-page/FavoriteEventPage'
 import LoginUserPage from './router-dom-page/LoginUserPage'
 import ContactsPage from './router-dom-page/ContactsPage'
+import RegistrationPage from './router-dom-page/RegistrationPage'
 
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
           <Route path="/favorite" element={<FavoriteEventPage />} />
           <Route path="/eventpage" element={<EventPage />} />
           <Route path="/login" element={<LoginUserPage />} />
-          
+          <Route path="/registration" element={<RegistrationPage />} />
         </Routes>
       </div>
       

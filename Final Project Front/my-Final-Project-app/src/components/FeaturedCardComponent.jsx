@@ -14,9 +14,8 @@ export default function FeaturedCardComponent() {
     >
       <img
         src="https://img.freepik.com/free-photo/anime-car-city_23-2151710983.jpg?uid=R201212174&ga=GA1.1.520862019.1740509080&semt=ais_items_boosted&w=740"
-        className="card-img-top"
+        className="card-img-top featured-img"
         alt="img"
-        style={{ borderRadius: '20px', width: '100%', height: '100%' }}
       />
     </div>
   )

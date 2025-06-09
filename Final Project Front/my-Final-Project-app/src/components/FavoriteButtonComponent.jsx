@@ -1,16 +1,36 @@
 import React from 'react'
-import '../style/FavoriteButtonStyle.css' // Assicurati di avere questo file CSS
-export default function FavoriteButtonComponent({ event }) {
+import '../style/FavoriteButtonStyle.css'
+
+export default function FavoriteButtonComponent({ event, userId, backendFavoriteIds, setBackendFavoriteIds, localFavoriteIds, setLocalFavoriteIds }) {
   const handleAddFavorite = () => {
-    // Prendi i preferiti già salvati o array vuoto
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || []
-    // Se non già presente, aggiungi l'id
-    if (!favorites.includes(event.id)) {
-      favorites.push(event.id)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
-      alert('Aggiunto ai preferiti!')
-    } else {
-      alert('Evento già nei preferiti!')
+    console.log('Bottone cliccato', event, userId);
+    if (event._id && userId) {
+      // Evento dal backend: aggiungi ai preferiti del backend
+      fetch(`http://localhost:3000/api/user/${userId}/favorites`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventId: event._id })
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log('Risposta backend:', data);
+          setBackendFavoriteIds(data.favorites || []);
+          alert('Aggiunto ai preferiti!');
+        })
+        .catch((err) => {
+          console.error('Errore nell\'aggiunta ai preferiti!', err);
+          alert('Errore nell\'aggiunta ai preferiti!');
+        });
+    } else if (event.id) {
+      // Evento solo FE: aggiungi a localStorage
+      if (!localFavoriteIds.includes(event.id)) {
+        const updated = [...localFavoriteIds, event.id]
+        setLocalFavoriteIds(updated)
+        localStorage.setItem('localFavorites', JSON.stringify(updated))
+        alert('Aggiunto ai preferiti!')
+      } else {
+        alert('Evento già nei preferiti!')
+      }
     }
   }
 
