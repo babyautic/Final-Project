@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom'
 
 import FeaturedCardComponent from '../components/FeaturedCardComponent'
 import EventCardComponent from '../components/EventCardComponent'
+import MockEventsComponent from '../components/MockEventsComponent'
+
+//import mockEvents data
+import mockEvents from '../mocks/mockEvents'
 
 // Dati manuali per l'evento in evidenza (puoi anche prenderlo dal backend se vuoi)
 const featuredEvent = {
@@ -12,11 +16,10 @@ const featuredEvent = {
     nome: "Music Festival",
     data: "2023-10-15",
     location: "Central Park, NY",
-    descrizione: "Join us for a day of music and fun!",
-    img: "https://via.placeholder.com/300"
+    descrizione: "Join us for a day of music and fun!" 
 }
 
-const homeEventIds = [2, 4, 5, 6]; // scegli gli ID che vuoi mostrare
+
 
 export default function HomePage() {
     const [homeEvents, setHomeEvents] = useState([])
@@ -54,14 +57,13 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <div className="our-events-section">
+
+                <div>
                     <h2>I nostri eventi</h2>
-                    <div className="eventListFlex">
-                        {homeEvents.map(event => (
-                            <EventCardComponent key={event._id || event.id} event={event} />
-                        ))}
-                    </div>
+                    <MockEventsComponent events={mockEvents.slice(0, 3)} />
                 </div>
+
+
 
                 <div id='iconContainer'>
                     <div className='containerIconText'>

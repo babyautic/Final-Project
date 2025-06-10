@@ -8,6 +8,7 @@ import EventListComponent from './components/EventListComponent'
 import FiltersComponent from './components/FiltersComponent'
 import FavoriteButtonComponent from './components/FavoriteButtonComponent'
 
+
 //import Pages
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './router-dom-page/HomePage'
@@ -18,6 +19,7 @@ import LoginUserPage from './router-dom-page/LoginUserPage'
 import ContactsPage from './router-dom-page/ContactsPage'
 import RegistrationPage from './router-dom-page/RegistrationPage'
 import CreateEventPage from './router-dom-page/CreateEventPage'
+
 
 
 function App() {
