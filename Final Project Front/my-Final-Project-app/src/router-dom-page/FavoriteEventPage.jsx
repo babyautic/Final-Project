@@ -3,61 +3,101 @@ import EventCardComponent from '../components/EventCardComponent'
 import '../style/FavoriteEventPageStyle.css'
 
 export default function FavoriteEventPage() {
-  const userId = localStorage.getItem('userId')
-  const [backendFavoriteIds, setBackendFavoriteIds] = useState([])
-  const [localFavoriteIds, setLocalFavoriteIds] = useState(
-    JSON.parse(localStorage.getItem('localFavorites')) || []
-  )
-  const [events, setEvents] = useState([])
+  const userId = localStorage.getItem('userId');
+  const [favoriteEvents, setFavoriteEvents] = useState([]);
+  // ASSICURATI CHE QUESTE DUE RIGHE SIANO PRESENTI:
+  const [loading, setLoading] = useState(true); // Stato per gestire il caricamento
+  const [error, setError] = useState(null);   // Stato per gestire gli errori
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/eventi')
-      .then(res => res.json())
-      .then(data => setEvents(data))
-      .catch(err => console.error('Errore nel caricamento eventi:', err))
-  }, [])
-
-  useEffect(() => {
-    if (userId) {
-      fetch(`http://localhost:3000/api/user/${userId}/favorites`)
-        .then(res => res.json())
-        .then(data => {
-          setBackendFavoriteIds(data.favorites || []);
-        })
-        .catch(err => console.error('Errore nel caricamento preferiti:', err))
+    // Se l'utente non è loggato, non fare la chiamata API
+    if (!userId) {
+      setLoading(false);
+      setError('Utente non autenticato. Accedi per vedere i tuoi preferiti.');
+      return;
     }
-  }, [userId])
-
-  // Unisci i preferiti: backend (eventi con _id) e locali (eventi con id)
-  const favoriteEvents = events.filter(e =>
-    (e._id && backendFavoriteIds.includes(e._id)) ||
-    (e.id && localFavoriteIds.includes(e.id))
-  )
-
-  const removeFavorite = (event) => {
-    if (event._id && userId) {
-      // Evento dal backend: rimuovi dai preferiti del backend
-      fetch(`http://localhost:3000/api/user/${userId}/favorites/${event._id}`, {
-        method: 'DELETE'
+    setLoading(true);
+    setError(null); // Resetta eventuali errori precedenti
+    // Chiamata API per ottenere gli eventi preferiti dell'utente
+    fetch(`http://localhost:3000/api/user/eventsFavourites`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userId}`
+      },
+    })
+      .then(res => {
+        if (!res.ok) {
+          // Se la risposta non è OK (es. 401, 404, 500), lancia un errore
+          return res.json().then(errData => {
+            throw new Error(errData.message || 'Errore nel recupero dei preferiti.');
+          });
+        }
+        return res.json();
       })
-        .then(res => res.json())
-        .then(data => setBackendFavoriteIds(data.favorites || []))
-        .catch(err => console.error('Errore nella rimozione del preferito:', err))
-    } else if (event.id) {
-      // Evento solo FE: rimuovi da localStorage
-      const updated = localFavoriteIds.filter(favId => favId !== event.id)
-      setLocalFavoriteIds(updated)
-      localStorage.setItem('localFavorites', JSON.stringify(updated))
+      .then(data => {
+        // La tua API restituisce direttamente un array di eventi preferiti
+        setFavoriteEvents(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Errore nel caricamento dei preferiti:', err);
+        setError(err.message || 'Si è verificato un errore durante il caricamento dei preferiti.');
+        setLoading(false);
+      });
+  }, [userId]); // Ricarica i preferiti quando cambia l'ID utente
+
+    const removeFavorite = (event) => {
+    if (!userId) {
+      alert('Non sei autenticato. Impossibile rimuovere dai preferiti.');
+      return;
     }
-  }
+
+    // Assicurati che l'evento abbia un '_id' per la rimozione dal backend
+    if (!event._id) {
+      console.error('L\'evento non ha un _id valido per la rimozione dal backend:', event);
+      alert('Impossibile rimuovere l\'evento: ID non valido.');
+      return;
+    }
+
+    fetch(`http://localhost:3000/api/user/eventi/${event._id}/preferiti`, { // Modifica l'endpoint se necessario
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userId}`
+      },
+    })
+      .then(res => {
+        if (res.ok) {
+          alert('Evento rimosso dai preferiti con successo!');
+          // Aggiorna lo stato rimuovendo l'evento eliminato
+          setFavoriteEvents(prevEvents => prevEvents.filter(fav => fav._id !== event._id));
+        } else {
+          return res.json().then(errData => {
+            throw new Error(errData.message || 'Errore durante la rimozione dai preferiti.');
+          });
+        }
+      })
+      .catch(err => {
+        console.error('Errore nella rimozione del preferito:', err);
+        alert(`Errore nella rimozione: ${err.message}`);
+      });
+  };
 
   return (
     <div className="favorite-events-container">
       <h2 className="favorite-title">I tuoi preferiti</h2>
-      {favoriteEvents.length === 0 && <p className="favorite-empty">Nessun evento nei preferiti.</p>}
+
+      {loading && <p className="favorite-loading">Caricamento preferiti...</p>}
+      {error && <p className="favorite-error">Errore: {error}</p>}
+
+      {!loading && !error && favoriteEvents.length === 0 && (
+        <p className="favorite-empty">Nessun evento nei preferiti.</p>
+      )}
+
       <div className="favorite-cards-list">
-        {favoriteEvents.map(event => (
-          <div key={event._id || event.id} className="favorite-card-wrapper">
+        {!loading && !error && favoriteEvents.map(event => (
+          <div key={event._id} className="favorite-card-wrapper">
             <EventCardComponent event={event} />
             <button
               className="remove-favorite-icon"
@@ -70,5 +110,5 @@ export default function FavoriteEventPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -5,8 +5,8 @@ export default function CreateEvent() {
     nameEvent: '',
     description: '',
     date: '',
-    location: '',
-    image: ''
+    location: ''
+    
   })
 
   const handleChange = e => {
@@ -61,15 +61,7 @@ export default function CreateEvent() {
           required
         />
       </label>
-      <label>
-        Immagine (URL):
-        <input
-          type="text"
-          name="image"
-          value={form.image}
-          onChange={handleChange}
-        />
-      </label>
+     
       <button type="submit">Crea evento</button>
     </form>
   )

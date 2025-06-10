@@ -2,15 +2,14 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController.js');
 
-// Route specifiche PRIMA
-router.get('/:userId/favorites', userController.getFavorites);
-router.post('/:userId/favorites', userController.addFavorite);
-router.delete('/:userId/favorites/:eventId', userController.removeFavorite);
+router.post('/register', userController.createUtente);
+router.post('/login', userController.loginUtente);
+router.put('/eventi/:id/preferiti', userController.verificaToken, userController.putEventoPreferito)
+router.get('/eventsFavourites', userController.verificaToken, userController.getEventiPreferiti)
+router.delete('/eventi/:id/preferiti', userController.verificaToken, userController.deleteEventoPreferito)
 
-// Route generiche DOPO
-router.get('/', userController.getUtenti);
-router.post('/', userController.createUtente);
-router.post('/login', userController.loginUser);
-router.get('/:id', userController.getUtenteById);
+//router.get('/', userController.getUtenti);
+//router.get('/:id', userController.getUtenteById);
+//router.put('/:userId/favoriti/:id', userController.putEventoPreferito)
 
 module.exports = router;

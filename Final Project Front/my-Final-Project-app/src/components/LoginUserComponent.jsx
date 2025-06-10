@@ -13,20 +13,16 @@ export default function LoginUserComponent() {
       const res = await fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ emailUser: email, pwdUser: password })
       })
-        .then(async res => {
-          const data = await res.json();
-          if (res.ok) {
-            localStorage.setItem('userId', data.userId); // <-- solo se login ok!
-            alert('Login effettuato!');
-            // eventuale redirect
-          } else {
-            alert(data.error || 'Login fallito');
-            // NON aggiornare localStorage!
-          }
-        })
-        .catch(() => alert('Errore di rete'));
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem('userId', data.token); // salva token o userId
+        alert('Login effettuato!');
+        // eventuale redirect
+      } else {
+        alert(data.error || 'Login fallito');
+      }
     } catch (err) {
       alert('Errore di rete')
     }

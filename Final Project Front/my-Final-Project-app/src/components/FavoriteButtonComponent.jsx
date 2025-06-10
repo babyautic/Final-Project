@@ -1,26 +1,28 @@
 import React from 'react'
 import '../style/FavoriteButtonStyle.css'
+import { data } from 'react-router-dom';
 
-export default function FavoriteButtonComponent({ event, userId, backendFavoriteIds, setBackendFavoriteIds, localFavoriteIds, setLocalFavoriteIds }) {
+export default function FavoriteButtonComponent({ event, localFavoriteIds, setLocalFavoriteIds }) {
   const handleAddFavorite = () => {
-    console.log('Bottone cliccato', event, userId);
-    if (event._id && userId) {
-      // Evento dal backend: aggiungi ai preferiti del backend
-      fetch(`http://localhost:3000/api/user/${userId}/favorites`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ eventId: event._id })
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log('Risposta backend:', data);
-          setBackendFavoriteIds(data.favorites || []);
-          alert('Aggiunto ai preferiti!');
-        })
-        .catch((err) => {
-          console.error('Errore nell\'aggiunta ai preferiti!', err);
-          alert('Errore nell\'aggiunta ai preferiti!');
-        });
+    console.log('Bottone cliccato', event, localStorage.getItem("userId"));
+    if (event._id && localStorage.getItem("userId")) {
+      fetch(`http://localhost:3000/api/user/eventi/${event._id}/preferiti`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem("userId")}` },
+      }).then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then(errorData => { // Tenta di leggere il corpo dell'errore
+            throw new Error(errorData.message || 'Errore durante l\'aggiunta ai preferiti.');
+          });
+        }
+      }).then(data => {
+        alert('Evento aggiunto con successo ai preferiti!');
+      }).catch(error => {
+        alert(`Errore: ${error.message}`);
+        console.error('Errore durante la richiesta al backend:', error);
+      });
     } else if (event.id) {
       // Evento solo FE: aggiungi a localStorage
       if (!localFavoriteIds.includes(event.id)) {
@@ -40,4 +42,3 @@ export default function FavoriteButtonComponent({ event, userId, backendFavorite
     </button>
   )
 }
-
