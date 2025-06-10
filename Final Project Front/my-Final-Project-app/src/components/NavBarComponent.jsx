@@ -25,7 +25,9 @@ export default function NavBarComponent({ menuOpen, setMenuOpen }) {
             <Nav.Link as={Link} to="/contacts" className="nav-link-red">Contacts</Nav.Link>
             <Nav.Link as={Link} to="/favorite" className="navLinkOrange">Favorite</Nav.Link>
             <Nav.Link as={Link} to="/login" className="nav-link-red d-lg-none navLinkLogin">Login</Nav.Link>
+            <Nav.Link as={Link} to="/createEvent" className="nav-link-red  navLinkCreateEvent">Create Event</Nav.Link>
           </Nav>
+
           <div className="loginUser d-none d-lg-flex">
             <Link to="/login">
               <img
