@@ -30,7 +30,7 @@ exports.loginUtente = async (req, res) => {
       return res.status(401).json({ message: 'Password errata' });
     }
 
-    const token = jwt.sign({ userId: utente._id }, process.env.JWT_SECRET, { expiresIn: '10m' });
+    const token = jwt.sign({ userId: utente._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({ message: 'Login riuscito!', token: token });
   } catch (err) {

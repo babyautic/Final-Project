@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from "react";
 import '../style/NavBarstyle.css'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,13 @@ import logo from '../assets/ProvaLogo.png'
 import userImg from '../assets/userimg.jpg'
 
 export default function NavBarComponent({ menuOpen, setMenuOpen }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("userId");
+    setIsLoggedIn(!!token);
+  }, []);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary fixed-top">
       <Container id="navbarContainer" fluid>
@@ -24,12 +31,22 @@ export default function NavBarComponent({ menuOpen, setMenuOpen }) {
             <Nav.Link as={Link} to="/" className="nav-link-red">Home</Nav.Link>
             <Nav.Link as={Link} to="/contacts" className="nav-link-red">Contacts</Nav.Link>
             <Nav.Link as={Link} to="/favorite" className="navLinkOrange">Favorite</Nav.Link>
-            <Nav.Link as={Link} to="/login" className="nav-link-red d-lg-none navLinkLogin">Login</Nav.Link>
-            <Nav.Link as={Link} to="/createEvent" className="nav-link-red  navLinkCreateEvent">Create Event</Nav.Link>
+            {isLoggedIn ? (
+              <Nav.Link as={Link} to="/account" className="nav-link-red d-lg-none navLinkLogin">Account</Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/login" className="nav-link-red d-lg-none navLinkLogin">Login</Nav.Link>
+            )}
+            <Nav.Link as={Link}
+              to={isLoggedIn ? "/createEvent" : "#"}
+              className={`nav-link-red navLinkCreateEvent ${!isLoggedIn ? "disabled-link" : ""}`}
+              onClick={(e) => {
+                if (!isLoggedIn) e.preventDefault(); // blocca il click se non loggato
+              }}
+            >Create Event</Nav.Link>
           </Nav>
 
           <div className="loginUser d-none d-lg-flex">
-            <Link to="/login">
+            <Link to={isLoggedIn ? "/account" : "/login"}>
               <img
                 src={userImg}
                 alt="User Icon"

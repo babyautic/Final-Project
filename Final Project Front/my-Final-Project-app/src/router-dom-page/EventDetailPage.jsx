@@ -1,6 +1,7 @@
 // EventDetailPage.jsx
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
+import mockEvents from '../mocks/mockEvents'
 
 export default function EventDetailPage() {
   const { id } = useParams()
@@ -9,6 +10,15 @@ export default function EventDetailPage() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+   
+    const mockEvent = mockEvents.find(e => String(e.id) === String(id))
+    if (mockEvent) {
+      setEvent(mockEvent)
+      setLoading(false)
+      return
+    }
+
+    // Altrimenti prova la fetch API
     fetch(`http://localhost:3000/api/eventi/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Evento non trovato')
@@ -30,9 +40,10 @@ export default function EventDetailPage() {
 
   return (
     <div>
-      <h2>{event.nome}</h2>
-      <img src={event.img} alt={event.nome} />
-      <p>{event.descrizione}</p>
+      <h2>{event.nome || event.nameEvent}</h2>
+      <img src={event.img || event.image} alt={event.nome || event.nameEvent} />
+      <p>{event.descrizione || event.description}</p>
+      {/* Aggiungi altri dettagli se vuoi */}
     </div>
   )
 }

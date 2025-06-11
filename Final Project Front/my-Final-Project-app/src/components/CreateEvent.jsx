@@ -4,19 +4,55 @@ export default function CreateEvent() {
   const [form, setForm] = useState({
     nameEvent: '',
     description: '',
-    date: '',
+    data: '',
     location: ''
-    
+
   })
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
+
+    // Preparazione dei dati per l'invio al backend
+    const dataToSend = { ...form };
+
+    // Gestione specifica per data:
+    // Converti la stringa 'YYYY-MM-DD' in un oggetto con '$date' e formato ISO 8601
+    if (form.data) {
+      // Crea un oggetto Date dalla stringa YYYY-MM-DD
+      const dataObject = new Date(form.data);
+      // Assicurati che sia una data valida
+      if (!isNaN(dataObject.getTime())) {
+        dataToSend.dataObject = dataObject.toISOString();
+      } else {
+        // Gestisci il caso in cui la data non è valida, se necessario
+        console.error("Data di nascita non valida:", form.data);
+        alert("Per favore, inserisci una data di nascita valida.");
+        return; // Blocca l'invio del form
+      }
+    }
+
     // Qui puoi aggiungere la fetch per inviare i dati al backend
-    console.log('Evento creato:', form)
+    try {
+      const res = await fetch('http://localhost:3000/api/eventi/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem("userId")}` },
+        body: JSON.stringify(dataToSend)
+      })
+      const dataRes = await res.json()
+      if (res.ok) {
+        alert('Evento creato con successo!')
+        // Puoi reindirizzare alla home qui.
+      } else {
+        alert(dataRes.message || dataRes.error || 'Errore, evento non creato... riprova più tardi');
+      }
+    } catch (err) {
+      console.error('Errore di rete o nella richiesta:', err);
+      alert('Errore di rete. Controlla la tua connessione o riprova più tardi.');
+    }
   }
 
   return (
@@ -45,8 +81,8 @@ export default function CreateEvent() {
         Data:
         <input
           type="date"
-          name="date"
-          value={form.date}
+          name="data"
+          value={form.data}
           onChange={handleChange}
           required
         />
@@ -61,7 +97,7 @@ export default function CreateEvent() {
           required
         />
       </label>
-     
+
       <button type="submit">Crea evento</button>
     </form>
   )

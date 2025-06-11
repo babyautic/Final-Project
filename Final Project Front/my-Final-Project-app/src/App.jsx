@@ -19,6 +19,7 @@ import LoginUserPage from './router-dom-page/LoginUserPage'
 import ContactsPage from './router-dom-page/ContactsPage'
 import RegistrationPage from './router-dom-page/RegistrationPage'
 import CreateEventPage from './router-dom-page/CreateEventPage'
+import AccountPage from './router-dom-page/AccountPage' // Assicurati che il path sia corretto
 
 
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/login" element={<LoginUserPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/createevent" element={<CreateEventPage />} />
+          <Route path="/account" element={<AccountPage />} />
         </Routes>
       </div>
       

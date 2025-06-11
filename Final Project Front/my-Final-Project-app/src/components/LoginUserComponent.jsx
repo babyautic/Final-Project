@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import '../style/LoginUserStyle.css'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 
 export default function LoginUserComponent() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,11 +21,13 @@ export default function LoginUserComponent() {
       if (res.ok) {
         localStorage.setItem('userId', data.token); // salva token o userId
         alert('Login effettuato!');
-        // eventuale redirect
+        navigate("/");
+        window.location.reload();
       } else {
         alert(data.error || 'Login fallito');
       }
     } catch (err) {
+      console.log(err);
       alert('Errore di rete')
     }
     setEmail('')

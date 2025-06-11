@@ -25,12 +25,9 @@ export default function HomePage() {
     const [homeEvents, setHomeEvents] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/api/eventi') // Cambia l'endpoint se necessario
+        fetch('http://localhost:3000/api/eventi')
             .then(res => res.json())
-            .then(data => {
-                // Filtra solo gli eventi desiderati
-                setHomeEvents(data.filter(e => homeEventIds.includes(e.id)))
-            })
+            .then(data => setHomeEvents(data))
             .catch(err => console.error('Errore nel caricamento eventi:', err))
     }, [])
 

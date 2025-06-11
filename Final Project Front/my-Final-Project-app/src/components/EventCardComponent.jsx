@@ -9,7 +9,9 @@ export default function EventCardComponent({ event }) {
       <div className="card-body">
         <h5 className="card-title">{event.nameEvent}</h5>
         <p className="card-text">{event.description}</p>
-        <Link to={`/event/${event.id}`}>Dettagli</Link>
+        <Link to={`/event/${event.id || event._id}`}>
+          <button className="btn btn-primary">Dettagli</button>
+        </Link>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
           <FavoriteButtonComponent event={event} />
         </div>
