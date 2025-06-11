@@ -16,7 +16,7 @@ const featuredEvent = {
     nome: "Music Festival",
     data: "2023-10-15",
     location: "Central Park, NY",
-    descrizione: "Join us for a day of music and fun!" 
+    descrizione: "Join us for a day of music and fun!"
 }
 
 
@@ -31,12 +31,16 @@ export default function HomePage() {
             .catch(err => console.error('Errore nel caricamento eventi:', err))
     }, [])
 
+    // Render della pagina principale con evento in evidenza, lista eventi e icone
     return (
         <>
             <div id='mainContainer'>
                 <h1>STREET AND RACE</h1>
 
+
                 <div id='mainEventCard' className="event-flex-row">
+
+
                     <div className="featured-col">
                         <div id="titleFeaturedEvent">
                             <h2>in evidenzia</h2>
@@ -54,29 +58,30 @@ export default function HomePage() {
                     </div>
                 </div>
 
-
+                {/* Sezione lista eventi */}
                 <div>
                     <h2>I nostri eventi</h2>
                     <MockEventsComponent events={mockEvents.slice(0, 3)} />
                 </div>
 
-
-
+                {/* Sezione icone */}
                 <div id='iconContainer'>
                     <div className='containerIconText'>
                         <Link to="/EventPage" className="icon-link">
-                            <ion-icon name="map-outline" class="icon"></ion-icon>
+                            <ion-icon name="calendar-outline" class="icon"></ion-icon>
                         </Link>
                         <h6><span>1.</span> Location</h6>
                     </div>
                     <div className='containerIconText'>
-                        <ion-icon name="calendar-outline" class="icon"></ion-icon>
-                        <h6><span>2.</span> Event</h6>
-                    </div>
-                    <div className='containerIconText'>
                         <ion-icon name="share-social-sharp" class="icon"></ion-icon>
-                        <h6><span>3.</span> Share</h6>
+                        <h6><span>2.</span> Share</h6>
                     </div>
+                    {/* 
+                    <div className='containerIconText'>
+                        <ion-icon name="map-outline" class="icon"></ion-icon>
+                        <h6><span>2.</span> Location</h6>
+                    </div> 
+                    */}
                 </div>
             </div>
         </>
