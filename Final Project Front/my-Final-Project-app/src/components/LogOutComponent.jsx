@@ -1,7 +1,10 @@
 import React from 'react'
 
+import '../style/LogOutStyle.css'
 export default function LogOutComponent() {
   return (
-    <div><button>Vuoi effettuare il logout?</button></div>
+    <div className="logoutContainer">
+      <button className="logoutBtn">Vuoi effettuare il logout?</button>
+    </div>
   )
 }
