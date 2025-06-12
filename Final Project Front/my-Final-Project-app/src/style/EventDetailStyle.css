@@ -1,0 +1,49 @@
+.eventDetailContainer {
+  max-width: 480px;
+  margin: 40px auto 0 auto;
+  background: #181818;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,0,255,0.10);
+  padding: 32px 24px 28px 24px;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.eventDetailContainer h2 {
+  color: #ff00e6;
+  font-size: 2rem;
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.eventDetailContainer img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(60,0,255,0.10);
+}
+
+.eventDetailContainer p {
+  font-size: 1.05rem;
+  margin: 10px 0;
+  color: #fff200;
+  letter-spacing: 0.02em;
+}
+
+.eventDetailContainer strong {
+  color: #3c00ff;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .eventDetailContainer {
+    padding: 18px 6px 16px 6px;
+  }
+  .eventDetailContainer h2 {
+    font-size: 1.3rem;
+  }
+}
