@@ -64,10 +64,10 @@ export default function HomePage() {
                     <div id='eventDetailsContainer'>
                         <div id='eventDetails'>
                             <h2>Event Details</h2>
-                            <p>Event Name: {featuredEvent.nome}</p>
-                            <p>Date: {featuredEvent.data}</p>
-                            <p>Location: {featuredEvent.location}</p>
-                            <p>Description: {featuredEvent.descrizione}</p>
+                            <p><span>Event Name:</span> {featuredEvent.nome}</p>
+                            <p><span>Date:</span> {featuredEvent.data}</p>
+                            <p><span>Location:</span> {featuredEvent.location}</p>
+                            <p><span>Description:</span> {featuredEvent.descrizione}</p>
                         </div>
                     </div>
                 </div>

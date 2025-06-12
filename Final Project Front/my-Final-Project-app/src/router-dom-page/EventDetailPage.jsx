@@ -41,15 +41,49 @@ export default function EventDetailPage() {
   if (!event) return <div>Evento non trovato</div>
 
   return (
-    <div className="eventDetailContainer">
-      <h2>{event.nome || event.nameEvent}</h2>
-      <img src={event.img || event.image} alt={event.nome || event.nameEvent} />
-      <p>{event.descrizione || event.description}</p>
-      {event.location && <p><strong>Location:</strong> {event.location}</p>}
-      {event.data && <p><strong>Data:</strong> {event.data}</p>}
-      {event.orario && <p><strong>Orario:</strong> {event.orario}</p>}
-      {event.descrizioneDettagliata && <p>{event.descrizioneDettagliata}</p>}
-      {event.organizzatore && <p><strong>Organizzatore:</strong> {event.organizzatore}</p>}
+    <div className="eventDetailHero">
+      <div
+        className="eventDetailBg"
+        style={{
+          backgroundImage: `url(${event.img || event.image})`
+        }}
+      />
+      <div className="eventDetailContent">
+        <h1 className="eventDetailTitle">{event.nome || event.nameEvent}</h1>
+        <h3 className="eventDetailSubtitle">{event.descrizione || event.description}</h3>
+        <div className="eventDetailInfoList">
+          {event.location && (
+            <div className="eventDetailRow">
+              <span className="eventDetailLabel">Luogo:</span>
+              {event.location}
+            </div>
+          )}
+          {event.data && (
+            <div className="eventDetailRow">
+              <span className="eventDetailLabel">Data:</span>
+              {event.data}
+            </div>
+          )}
+          {event.orario && (
+            <div className="eventDetailRow">
+              <span className="eventDetailLabel">Orario:</span>
+              {event.orario}
+            </div>
+          )}
+          {event.descrizioneDettagliata && (
+            <div className="eventDetailRow eventDetailDettagliata">
+              <span className="eventDetailLabel">Descrizione dettagliata:</span>
+              {event.descrizioneDettagliata}
+            </div>
+          )}
+          {event.organizzatore && (
+            <div className="eventDetailRow">
+              <span className="eventDetailLabel">Organizzatore:</span>
+              {event.organizzatore}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
