@@ -23,6 +23,20 @@ const featuredEvent = {
 
 export default function HomePage() {
     const [homeEvents, setHomeEvents] = useState([])
+    // Stato per login (esempio: true se c'è userId in localStorage)
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("userId"))
+    // Stato per i preferiti dell'utente loggato
+    const [favorites, setFavorites] = useState([])
+
+    // Funzione per aggiungere/rimuovere preferiti
+    const toggleFavorite = (eventId) => {
+        if (!isLoggedIn) return;
+        setFavorites(prev =>
+            prev.includes(eventId)
+                ? prev.filter(id => id !== eventId)
+                : [...prev, eventId]
+        );
+    }
 
     useEffect(() => {
         fetch('http://localhost:3000/api/eventi')

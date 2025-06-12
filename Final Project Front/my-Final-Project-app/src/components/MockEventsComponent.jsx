@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../style/MockEventsStyle.css'
-
+import DetailButtonComponent from './DetailButtonComponent'
+  
 export default function MockEventsComponent({ events }) {
   return (
     <div className="mockEventsList">
@@ -9,6 +11,9 @@ export default function MockEventsComponent({ events }) {
           <img src={event.img} alt={event.nome} />
           <h3>{event.nome}</h3>
           <p>{event.descrizione}</p>
+          <Link to={`/event/${event.id}`}>
+            <DetailButtonComponent />
+          </Link>
         </div>
       ))}
     </div>
