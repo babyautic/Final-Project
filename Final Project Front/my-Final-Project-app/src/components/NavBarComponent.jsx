@@ -30,14 +30,16 @@ export default function NavBarComponent({ menuOpen, setMenuOpen }) {
           <Nav className="linkContainer">
             <Nav.Link as={Link} to="/" className="nav-link-red">Home</Nav.Link>
             <Nav.Link as={Link} to="/contacts" className="nav-link-red">Contacts</Nav.Link>
-            <Nav.Link as={Link} to="/favorite" className="navLinkOrange">Favorite</Nav.Link>
+            <Nav.Link as={Link} to="/favorite" className={`navLinkOrange ${!isLoggedIn ? "disabled-link" : ""}`}
+              onClick={(e) => {
+                if (!isLoggedIn) e.preventDefault(); // blocca il click se non loggato
+              }}>Favorite</Nav.Link>
             {isLoggedIn ? (
               <Nav.Link as={Link} to="/account" className="nav-link-red d-lg-none navLinkLogin">Account</Nav.Link>
             ) : (
               <Nav.Link as={Link} to="/login" className="nav-link-red d-lg-none navLinkLogin">Login</Nav.Link>
             )}
-            <Nav.Link as={Link}
-              to={isLoggedIn ? "/createEvent" : "#"}
+            <Nav.Link as={Link} to={isLoggedIn ? "/createEvent" : "#"}
               className={`nav-link-red navLinkCreateEvent ${!isLoggedIn ? "disabled-link" : ""}`}
               onClick={(e) => {
                 if (!isLoggedIn) e.preventDefault(); // blocca il click se non loggato

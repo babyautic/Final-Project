@@ -21,7 +21,7 @@ export default function ContactsPage() {
           </li>
           <li>
             <img src={iconInstagram} alt="Instagram" className="contact-icon custom-instagram" />
-            <a href="https://instagram.com/tuonomeutente" target="_blank" rel="noopener noreferrer">@tuonomeutente</a>
+            <a href="https://instagram.com/tuonomeutente" target="_blank" rel="noopener noreferrer">@streetandrace</a>
           </li>
         </ul>
       </div>

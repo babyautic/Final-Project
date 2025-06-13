@@ -9,7 +9,7 @@ export default function CreateEvent() {
     orario: '',
     descrizioneDettagliata: '',
     organizzatore: '',
-    img: ''
+    image: ''
   })
 
   const handleChange = e => {
@@ -125,9 +125,9 @@ export default function CreateEvent() {
         <label>
           URL immagine:
           <input
-            type="text"
-            name="img"
-            value={form.img}
+            type='url'
+            name="image"
+            value={form.image}
             onChange={handleChange}
           />
         </label>
