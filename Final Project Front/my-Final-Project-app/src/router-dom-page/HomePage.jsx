@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../style/HomePageStyle.css'
-import mapIcon from '../assets/mapicon.jpg'
+
 import { Link } from 'react-router-dom'
 
 import FeaturedCardComponent from '../components/FeaturedCardComponent'

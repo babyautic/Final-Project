@@ -5,8 +5,11 @@ export default function CreateEvent() {
     nameEvent: '',
     description: '',
     data: '',
-    location: ''
-
+    location: '',
+    orario: '',
+    descrizioneDettagliata: '',
+    organizzatore: '',
+    img: ''
   })
 
   const handleChange = e => {
@@ -58,16 +61,19 @@ export default function CreateEvent() {
   return (
     <form className="create-event-form" onSubmit={handleSubmit}>
       <h2>Crea un nuovo evento</h2>
-      <label>
-        Nome evento:
-        <input
-          type="text"
-          name="nameEvent"
-          value={form.nameEvent}
-          onChange={handleChange}
-          required
-        />
-      </label>
+      <div className="centered-label">
+        <label>
+          Nome evento:
+          <input
+            type="text"
+            name="nameEvent"
+            value={form.nameEvent}
+            onChange={handleChange}
+            required
+            className="wide-input"
+          />
+        </label>
+      </div>
       <label>
         Descrizione:
         <textarea
@@ -77,27 +83,63 @@ export default function CreateEvent() {
           required
         />
       </label>
+      <div className="event-form-grid">
+        <label>
+          Data:
+          <input
+            type="date"
+            name="data"
+            value={form.data}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Location:
+          <input
+            type="text"
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Orario:
+          <input
+            type="text"
+            name="orario"
+            value={form.orario}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Organizzatore:
+          <input
+            type="text"
+            name="organizzatore"
+            value={form.organizzatore}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          URL immagine:
+          <input
+            type="text"
+            name="img"
+            value={form.img}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
       <label>
-        Data:
-        <input
-          type="date"
-          name="data"
-          value={form.data}
+        Descrizione dettagliata:
+        <textarea
+          name="descrizioneDettagliata"
+          value={form.descrizioneDettagliata}
           onChange={handleChange}
-          required
         />
       </label>
-      <label>
-        Location:
-        <input
-          type="text"
-          name="location"
-          value={form.location}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
       <button type="submit">Crea evento</button>
     </form>
   )
