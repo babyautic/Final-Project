@@ -1,0 +1,59 @@
+.contactsSection {
+  text-align: center;
+  margin: 32px auto;
+}
+
+.contactsSection h2 {
+  color: #ffffff;
+  margin-bottom: 18px;
+  font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contactsSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contactsSection li {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.contactsSection a {
+  color: #fff200;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contactsSection a:hover {
+  text-decoration: underline;
+}
+
+.contact-icon {
+  font-size: 1.5em;
+  color: #3c00ff;
+  vertical-align: middle;
+}
+.contact-icon.custom-gmail {
+  width: 1.5em;
+  height: 1.5em;
+  object-fit: contain;
+  margin-right: 6px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background: #fff; /* opzionale */
+}
+
+.contact-icon.custom-whatsapp,
+.contact-icon.custom-instagram {
+  width: 1.5em;
+  height: 1.5em;
+  object-fit: contain;
+  margin-right: 6px;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background: #fff; /* opzionale */
+}

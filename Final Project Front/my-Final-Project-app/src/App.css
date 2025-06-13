@@ -1,0 +1,17 @@
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+  background-color: #1d1d1d;
+color: rgb(255, 255, 255);
+}
+
+#mainContent.blurred {
+  filter: blur(5px);
+  transition: filter 0.3s;
+  pointer-events: none; /* blocca click sul contenuto */
+  user-select: none;    /* blocca selezione testo */
+}
+

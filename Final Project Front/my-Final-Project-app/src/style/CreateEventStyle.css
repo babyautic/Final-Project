@@ -1,0 +1,188 @@
+.create-event-form {
+  max-width: 900px; /* aumentato per desktop */
+  width: 98vw;
+  margin: 48px auto;
+  background: rgba(24,24,24,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,0,255,0.10);
+  padding: 48px 48px 40px 48px;
+  font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.create-event-form h2 {
+  color: #fff200;
+  font-size: 1.7rem;
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+}
+
+.create-event-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.08rem;
+  color: #fff200;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+  align-items: flex-start;
+}
+
+.create-event-form input,
+.create-event-form textarea {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #232323;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(60,0,255,0.05);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+/* Input normali più stretti */
+.create-event-form input[type="text"],
+.create-event-form input[type="date"] {
+  width: 320px;
+  max-width: 100%;
+  min-width: 180px;
+}
+
+/* Descrizione dettagliata e textarea più larghe */
+.create-event-form textarea {
+  width: 100%;
+  min-width: 320px;
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Rendi la textarea descrizione dettagliata più alta */
+.create-event-form textarea[name="descrizioneDettagliata"] {
+  min-height: 160px;
+}
+
+.create-event-form input:focus,
+.create-event-form textarea:focus {
+  box-shadow: 0 0 0 2px #3c00ff;
+}
+
+.create-event-form textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.create-event-form button[type="submit"] {
+  background: linear-gradient(90deg, #3c00ff 0%, #ff00e6 100%);
+  color: #fff200;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  margin-top: 10px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 12px rgba(60,0,255,0.10);
+  transition: background 0.2s, color 0.2s;
+}
+
+.create-event-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #ff00e6 0%, #3c00ff 100%);
+  color: #fff;
+}
+
+/* Nuove classi per il layout a griglia e input centrati */
+.centered-label {
+  align-items: center;
+  text-align: center;
+}
+
+.centered-label label,
+.centered-label span,
+.centered-label strong {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.wide-input {
+  width: 60%;
+  min-width: 260px;
+  max-width: 500px;
+  margin: 0 auto;
+  display: block;
+}
+
+.event-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 32px;
+  margin: 18px 0;
+}
+
+.event-form-grid label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.08rem;
+  color: #fff200;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  align-items: flex-start;
+}
+
+.event-form-grid input {
+  width: 100%;
+  min-width: 0;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #232323;
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(60,0,255,0.05);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+/* Responsive per mobile */
+@media (max-width: 900px) {
+  .create-event-form {
+    max-width: 98vw;
+    padding: 18px 2vw 18px 2vw;
+  }
+  .wide-input {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .event-form-grid {
+    grid-template-columns: 1fr;
+    gap: 12px 0;
+  }
+}
+@media (max-width: 600px) {
+  .create-event-form {
+    max-width: 98vw;
+    padding: 14px 6px 10px 6px;
+  }
+  .create-event-form h2 {
+    font-size: 1.15rem;
+  }
+}

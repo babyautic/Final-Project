@@ -1,0 +1,181 @@
+/* Contenitore centrale */
+.registration-form {
+  max-width: 320px;
+  margin: 40px auto;
+  padding: 20px 14px;
+  background: #181818;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(60,0,255,0.12);
+  color: #fff;
+  font-family: 'Orbitron', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Titolo */
+.registration-form h2 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: #fff200;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+  letter-spacing: 0.1em;
+  font-size: 1.3rem;
+}
+
+/* Form */
+.registration-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Label e input */
+.registration-form label {
+  font-size: 0.98rem;
+  margin-bottom: 3px;
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.registration-form input[type="date"] {
+  padding: 7px;
+  border-radius: 7px;
+  border: none;
+  background: #232323;
+  color: #fff;
+  font-size: 0.98rem;
+  margin-top: 2px;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.registration-form input[type="text"]:focus,
+.registration-form input[type="email"]:focus,
+.registration-form input[type="password"]:focus,
+.registration-form input[type="date"]:focus {
+  box-shadow: 0 0 0 2px #ff00e6;
+}
+
+/* Bottone */
+.registration-form button[type="submit"] {
+  background: linear-gradient(90deg, #ff00e6, #3c00ff);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+
+.registration-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #fff200, #ff00cc);
+  color: #181818;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 10px;
+  color: #ff00e6;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Contenitore centrale orizzontale */
+.registration-form-horizontal {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px 14px;
+  background: #181818;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(60,0,255,0.12);
+  color: #fff;
+  font-family: 'Orbitron', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Titolo */
+.registration-form-horizontal h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #fff200;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+  letter-spacing: 0.1em;
+  font-size: 1.3rem;
+}
+
+/* Riga orizzontale dei campi */
+.registration-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap; /* aggiunto per evitare overflow */
+}
+
+.registration-row label {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.98rem;
+  margin-bottom: 0;
+}
+
+.registration-form-horizontal input[type="text"],
+.registration-form-horizontal input[type="email"],
+.registration-form-horizontal input[type="password"],
+.registration-form-horizontal input[type="date"] {
+  width: 100%; /* assicura che l'input non esca dal contenitore */
+  box-sizing: border-box;
+  padding: 7px;
+  border-radius: 7px;
+  border: none;
+  background: #232323;
+  color: #fff;
+  font-size: 0.98rem;
+  margin-top: 2px;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.registration-form-horizontal input:focus {
+  box-shadow: 0 0 0 2px #ff00e6;
+}
+
+.registration-form-horizontal button[type="submit"] {
+  background: linear-gradient(90deg, #ff00e6, #3c00ff);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.2s;
+}
+
+.registration-form-horizontal button[type="submit"]:hover {
+  background: linear-gradient(90deg, #fff200, #ff00cc);
+  color: #181818;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 10px;
+  color: #ff00e6;
+  text-decoration: none;
+  font-size: 0.9rem;
+}

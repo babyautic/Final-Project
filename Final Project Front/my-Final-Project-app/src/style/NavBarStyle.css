@@ -1,0 +1,153 @@
+.navbar {
+    background-color: #1d1d1d !important;
+    padding: 0px 20px;
+    margin: 0px;
+
+}
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#navbarContainer {
+
+    padding: 0px;
+}
+.logoContainer{
+    margin: 0px;
+    padding: 0px !important;
+}
+.logoContainer #Logo {
+    width: 60px !important;
+    height: auto !important;
+    
+}
+
+#userImg {
+    width: 40px !important;
+    height: auto !important;
+    border-radius: 50%;
+}
+
+/*#basic-navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.navbar a {
+    color: rgb(255, 255, 255) !important;
+    text-shadow:
+        2px 2px 0 #b01919,
+        4px 4px 8px #ff00cc,
+        0 0 24px #3c00ff;
+}
+
+.navbar .navLinkOrange {
+  color: #fff200 !important;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+}
+
+.navbar .navLinkLogin {
+  color: #fff200 !important; /* arancione */
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+}
+
+/* Stile per il link "Create Event" come "Favorite" */
+.navbar .navLinkCreateEvent {
+  color: #fff200 !important;
+  text-shadow:
+    2px 2px 0 #b01919,
+    4px 4px 8px #ff00cc,
+    0 0 24px #3c00ff;
+}
+
+.loginUser {
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+}
+
+.linkContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Solo su schermi grandi, flex */
+@media (min-width: 992px) {
+    #basic-navbar-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Colore icona hamburger */
+.navbar-toggler {
+  border-color: #ff9800 !important; /* bordo arancione */
+  background: #1d1d1d !important;   /* sfondo coerente con la navbar */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: none;
+}
+
+.navbar-toggler:not(.collapsed) {
+  border-color: #fff200 !important; /* giallo quando attivo */
+  box-shadow:
+    0 0 0 2px #ff9800,
+    0 0 8px 2px #ff00cc,
+    0 0 16px 4px #3c00ff;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important; /* rimuove l'icona di default */
+  width: 1.8em;
+  height: 1.8em;
+  position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon span {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff9800, #fff200);
+  margin: 6px 0;
+  border-radius: 2px;
+}
+
+.navbar-toggler-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none !important;
+  /* niente box-shadow qui! */
+  border-color: #ff9800 !important;
+}
+
+.navbar-toggler.collapsed:focus,
+.navbar-toggler.collapsed:active {
+  box-shadow: none !important;
+  border-color: #ff9800 !important;
+}
